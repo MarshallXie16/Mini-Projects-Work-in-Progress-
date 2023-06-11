@@ -5,12 +5,12 @@ from selenium.webdriver.common.keys import Keys
 import time
 
 # variables
-    #query = 'Anime figure'
-    #price = '10'
+    #query = ''
+    #price = ''
 
 # login info
-login_email = 'marshallxie16@gmail.com'
-login_password = 'Mx10251213$'
+login_email = ''
+login_password = ''
 
 listing_num = 1
 listing_time = 0
