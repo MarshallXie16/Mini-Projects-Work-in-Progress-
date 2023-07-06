@@ -56,22 +56,17 @@ def run_script():
         return Qnum
 
     def quiz():
-        # clicks on the current card icon
         icon.click()
-        # switches to new window
         driver.switch_to.window(driver.window_handles[2])
 
         # if already signed in
         try:
-            # starts quiz
             driver.find_element(By.ID, 'rqStartQuiz').click()
             driver.implicitly_wait(2)
         # otherwise sign in first
         except:
-            # clicks sign in
             driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/span/a').click()
             time.sleep(2)
-            # starts quiz
             driver.find_element(By.ID, 'rqStartQuiz').click()
             driver.implicitly_wait(2)
 
@@ -110,7 +105,6 @@ def run_script():
             driver.find_element(By.XPATH, value='//*[@id="btoption0"]').click()
         # otherwise sign in first
         except:
-            # clicks sign in
             driver.find_element(By.XPATH, '/html/body/div[2]/div[2]/span/a').click()
             time.sleep(2)
             driver.find_element(By.XPATH, value='//*[@id="btoption0"]').click()
@@ -148,26 +142,19 @@ def run_script():
     # iterate through each card in daily set
     while daily_set <= 3:
         print("\ndaily set number: " + str(daily_set))
-        # identify the icon
         icon = driver.find_element(By.XPATH, '//*[@id="daily-sets"]/mee-card-group[1]/div/mee-card[{}]/div/card-content/mee-rewards-daily-set-item-content/div/a/mee-rewards-points/div/div/span[1]'.format(daily_set))
-        # find the icon class
         class_name = icon.get_attribute("class")
         # check if task hasn't been done yet
-        print(class_name)
         if class_name == 'mee-icon mee-icon-AddMedium':
             h3 = driver.find_element(By.XPATH, '//*[@id="daily-sets"]/mee-card-group[1]/div/mee-card[{}]/div/card-content/mee-rewards-daily-set-item-content/div/a/div[2]/h3'.format(daily_set)).text
-            print(h3)
             # check the type of task
             if 'quiz' in h3:
-                print("quiz")
                 quiz()
             elif 'poll' in h3:
-                print("poll")
                 poll()
             else:
-                print("click")
                 click()
-        # else task has been done already
+        # task has been done already
         else:
             pass
 
@@ -179,9 +166,7 @@ def run_script():
     # iterate through each card in special set
     while special_set <= count_special_set():
         try:
-            # identify icon
             icon = driver.find_element(By.XPATH, '//*[@id="more-activities"]/div/mee-card[{}]/div/card-content/mee-rewards-more-activities-card-item/div/a/mee-rewards-points/div/div/span[1]'.format(special_set))
-            # find the icon class
             class_name = icon.get_attribute("class")
 
             # check if task hasn't been done yet
@@ -194,7 +179,7 @@ def run_script():
                     poll()
                 else:
                     click()
-            # else task has been done already
+            # task has been done already
             else:
                 pass
 
